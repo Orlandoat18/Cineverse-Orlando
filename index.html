@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cineverse</title>
+
+    <link rel="stylesheet" href="styles.css">
+    <script src="app.js" defer></script>
+  </head>
+
+  <body>
+    <h1>CINEVERSE</h1>
+
+    <div class="card" id="Portal">
+
+        <h2>Portal de reserva</h2>
+            <ul>
+                <li>Usuario</li> 
+                <li>Socio</li>
+                <li>Fecha</li>
+                <li>Estado</li>
+            </ul>
+            
+    </div>
+
+    <div class="card" id="Taquilla">
+        <h2>Taquilla</h2>
+            
+                <p>Entrada General: <span id="precioGeneral">8.50€</span></p>
+                <p>Combo pareja: <span id="precioCombo">12.00€</span></p>
+                <p>Codigo descuento: <span id="codigoDescuento">3€</span></p>
+            
+    </div>
+
+
+    <div class="card" id="BannerDescuento">
+        <h2>Venta anticipada</h2>
+            <button id="btn-ActivarDescuento">Activar descuento flash</button>
+            <p>Tiempo del descuento: <span id="contador">20</span> Segundos</p>
+    </div>
+
+
+    <div class="card" id="ResumenCompra">
+        <h2>Resumen de compra</h2>
+            <p>Subtotal</p>
+            <p>Descuento</p>
+            <p>IVA</p>
+            <p>TOTAL</p>
+    </div>
+
+    <div class="card" id="Resenias">
+        <h2>Reseñas</h2>
+            <textarea id="resenia" placeholder="Escribe tu opinión.."></textarea>
+            <button id="btn-resenia">Publicar</button>
+    </div>
+
+
+  </body>
+</html>
