@@ -178,3 +178,136 @@ botonDescuento.addEventListener('click', () => {
 
     }, 1000);
 });
+
+//BLOQUE 4: RESEÑAS Y PERSISTENCIA
+
+
+// Elementos del HTML
+const campoResenia = document.getElementById('resenia');
+const botonResenia = document.getElementById('btn-resenia');
+
+// Contenedor donde aparecerán las reseñas
+const listaResenias = document.createElement('div');
+listaResenias.id = 'listaResenias';
+
+document.getElementById('Resenias').appendChild(listaResenias);
+
+
+// 1. RECUPERAR RESEÑAS DEL LOCALSTORAGE
+
+let resenias = [];
+
+try {
+
+    const reseniasGuardadas = localStorage.getItem('resenias');
+
+    if (reseniasGuardadas) {
+        resenias = JSON.parse(reseniasGuardadas);
+    }
+
+} catch (error) {
+
+    console.error('No se pudieron recuperar las reseñas:', error);
+
+}
+
+
+
+// 2. MOSTRAR RESEÑAS
+function mostrarResenias() {
+
+    // Limpiar el contenedor antes de volver a pintar
+    listaResenias.replaceChildren();
+
+    resenias.forEach((resenia) => {
+
+        // Tarjeta de la reseña
+        const tarjeta = document.createElement('div');
+        tarjeta.classList.add('resenia');
+
+        // Nombre del socio
+        const nombre = document.createElement('h3');
+        nombre.textContent = resenia.nombreSocio;
+
+        // Fecha y hora
+        const fecha = document.createElement('p');
+        fecha.textContent = resenia.horaLocal;
+
+        // Opinión
+        const opinion = document.createElement('p');
+        opinion.textContent = resenia.opinion;
+
+        // Añadir elementos a la tarjeta
+        tarjeta.appendChild(nombre);
+        tarjeta.appendChild(fecha);
+        tarjeta.appendChild(opinion);
+
+        // Añadir tarjeta al listado
+        listaResenias.appendChild(tarjeta);
+    });
+}
+
+// 3. PUBLICAR NUEVA RESEÑA
+
+
+botonResenia.addEventListener('click', () => {
+
+    // Obtener el texto escrito y eliminar espacios
+    const opinion = campoResenia.value.trim();
+
+    // No permitir reseñas vacías
+    if (opinion === '') {
+        return;
+    }
+
+    // Crear nueva reseña
+    const nuevaResenia = {
+
+        // Marca temporal de creación
+        timestamp: Date.now(),
+
+        // Nombre del socio
+        nombreSocio: usuario,
+
+        // Fecha y hora local
+        horaLocal: new Date().toLocaleString('es-ES'),
+
+        // Opinión escrita
+        opinion: opinion
+    };
+
+
+    // Añadir la reseña al array
+    resenias.push(nuevaResenia);
+
+
+ 
+    // 4. GUARDAR EN LOCALSTORAGE
+    try {
+
+        localStorage.setItem(
+            'resenias',
+            JSON.stringify(resenias)
+        );
+
+    } catch (error) {
+
+        console.error(
+            'No se pudieron guardar las reseñas:',
+            error
+        );
+
+    }
+
+
+    // Vaciar el textarea
+    campoResenia.value = '';
+
+    // Actualizar las reseñas mostradas
+    mostrarResenias();
+
+});
+
+// 5. MOSTRAR RESEÑAS AL CARGAR
+mostrarResenias();
+
