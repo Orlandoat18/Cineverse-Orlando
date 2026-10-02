@@ -2,9 +2,9 @@
 
 //BLOQUE 1: ENTORNO Y PERFIL
 const Elementousuario = document.getElementById('usuario');
-const Elementorol = document.getElementById('rol'); 
-const ElementoFecha = document.getElementById('Fecha'); 
-const ElementoEstado = document.getElementById('Estado'); 
+const Elementorol = document.getElementById('socio'); 
+const ElementoFecha = document.getElementById('fecha'); 
+const ElementoEstado = document.getElementById('estado');
 
 
 const parametros = new URLSearchParams(window.location.search); 
@@ -35,10 +35,10 @@ ElementoEstado.textContent = estado;
 
 //Limpieza y procesamiento del correo
 const correoSocio = " orlando@gmail.com ";
-const correoLimpio = correoSocio.trim().toLowerCase(); //
+const correoLimpio = correoSocio.trim().toLowerCase(); 
 
 //3. Separacion de usuario y dominio
-const partes = correoLimpio.split('@'); //
+const partes = correoLimpio.split('@'); //Aqui tenemos dos elementos, uno antes del @ y otro después
 const nombre_correo = partes[0];
 const dominio = partes[1]; 
 
@@ -77,9 +77,68 @@ console.log(`ID de sesión: ${idSesion}`);
 
 //BLOQUE 2: TAQUILLA Y FACTURACIÓN
 
+// 1. Precios recibidos como texto
+const precioGeneral = "8.50€";
+const precioCombo = "12.00€";
+
+// Convertir los precios a números
+const precioGeneralNumero = parseFloat(precioGeneral);
+const precioComboNumero = parseFloat(precioCombo);
+
+// Calcular el subtotal
+const subtotal = precioGeneralNumero + precioComboNumero;
 
 
-//BLOQUE 3: DESCUENTO FLASH
+// 2. Validación y aplicación del descuento e IVA
 
-//BLOQUE 4: RESEÑAS Y PERSISTENCIA
+const formatoEuro = new Intl.NumberFormat('es-ES', {
+    style: 'currency',
+    currency: 'EUR'
+});
+
+if (Number.isFinite(subtotal)) {
+
+    const descuentoTexto = "3";
+    const descuento = Number(descuentoTexto);
+
+    const totalConDescuento = subtotal - descuento;
+    const iva = totalConDescuento * 0.21;
+    const total = totalConDescuento + iva;
+
+    console.log(`Subtotal: ${subtotal}`);
+    console.log(`Descuento: ${descuento}`);
+    console.log(`IVA: ${iva}`);
+    console.log(`Total: ${total}`);
+
+    document.getElementById('Subtotal').textContent =
+        `Subtotal: ${formatoEuro.format(subtotal)}`;
+
+    document.getElementById('descuento').textContent =
+        `Descuento: ${formatoEuro.format(descuento)}`;
+
+    document.getElementById('IVA').textContent =
+        `IVA: ${formatoEuro.format(iva)}`;
+
+    document.getElementById('total').textContent =
+        `TOTAL: ${formatoEuro.format(total)}`;
+
+} else {
+
+    console.log("El subtotal no es un número válido.");
+
+}
+
+
+// 3. Número de reserva
+
+let numeroReserva = 100;
+
+const siguienteReserva = ++numeroReserva;
+
+console.log(`Número de reserva: ${siguienteReserva}`);
+
+
+// 4. Formateo de moneda
+
+console.log(`Subtotal: ${formatoEuro.format(subtotal)}`);
 

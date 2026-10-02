@@ -1,60 +1,136 @@
 <!doctype html>
 <html lang="es">
-  <head>
+
+<head>
+
+    <!-- Configuración de caracteresD-->
     <meta charset="UTF-8" />
+
+    <!-- Permite que la página se adapte a móviles y diferentes pantallas -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Título que aparece en la pestaña del navegador -->
     <title>Cineverse</title>
 
-    <link rel="stylesheet" href="styles.css">
-    <script src="app.js" defer></script>
-  </head>
 
-  <body>
+    <!-- Conexión con la hoja de estilos CSS -->
+    <link rel="stylesheet" href="styles.css">
+
+    <!--
+        Conexión con JavaScript.
+        "defer" hace que el script se ejecute después de cargar el HTML.
+    -->
+    <script src="app.js" defer></script>
+
+</head>
+
+
+<body>
+
+    <!-- Título principal de la página -->
     <h1>CINEVERSE</h1>
+
+
+    <!--PORTAL DE RESERVA-->
 
     <div class="card" id="Portal">
 
         <h2>Portal de reserva</h2>
-            <ul>
-                <li id="usuario">Usuario</li> 
-                <li id="socio">Socio</li>
-                <li id="fecha">Fecha</li>
-                <li id="estado">Estado</li>
-            </ul>
+
+        <ul>
+
             
+            <li id="usuario">Usuario</li>
+            <li id="socio">Socio</li>
+            <li id="fecha">Fecha</li>
+            <li id="estado">Estado</li>
+
+        </ul>
+
     </div>
+
+
+    <!--TAQUILLA-->
 
     <div class="card" id="Taquilla">
+
         <h2>Taquilla</h2>
-            
-                <p>Entrada General: <span id="precioGeneral">8.50€</span></p>
-                <p>Combo pareja: <span id="precioCombo">12.00€</span></p>
-                <p>Codigo descuento: <span id="codigoDescuento">3€</span></p>
-            
+
+        <!-- Precio de una entrada general -->
+        <p>
+            Entrada General:
+            <span id="precioGeneral">8.50€</span>
+        </p>
+
+        <!-- Precio del combo de pareja -->
+        <p>
+            Combo pareja:
+            <span id="precioCombo">12.00€</span>
+        </p>
+
+        <!-- Código/importe del descuento -->
+        <p>
+            Codigo descuento:
+            <span id="codigoDescuento">3€</span>
+        </p>
+
     </div>
 
+
+    <!--VENTA ANTICIPADA / DESCUENTO FLASH-->
 
     <div class="card" id="BannerDescuento">
+
         <h2>Venta anticipada</h2>
-            <button id="btn-ActivarDescuento">Activar descuento flash</button>
-            <p>Tiempo del descuento: <span id="contador">20</span> Segundos</p>
+
+        <!--Botón utilizado por JavaScript para
+            iniciar el contador de 20 segundos.-->
+        <button id="btn-ActivarDescuento">
+            Activar descuento flash
+        </button>
+
+        <!--El número 20 será modificado por JavaScript
+            cada segundo hasta llegar a 0.-->
+        <p>
+            Tiempo del descuento:
+            <span id="contador">20</span>
+            Segundos
+        </p>
+
     </div>
 
+
+    <!-- RESUMEN DE COMPRA -->
 
     <div class="card" id="ResumenCompra">
+
         <h2>Resumen de compra</h2>
-            <p>Subtotal</p>
-            <p>Descuento</p>
-            <p>IVA</p>
-            <p>TOTAL</p>
+            <p id="Subtotal">Subtotal</p>
+            <p id="descuento">Descuento</p>
+            <p id="IVA">IVA</p>
+            <p id="total">TOTAL</p>
+
     </div>
 
+
+    <!--RESEÑAS -->
+      
     <div class="card" id="Resenias">
+
         <h2>Reseñas</h2>
-            <textarea id="resenia" placeholder="Escribe tu opinión.."></textarea>
-            <button id="btn-resenia">Publicar</button>
+
+        <!-- Campo donde el usuario escribe su opinión. JavaScript recogerá el contenido para guardarlo posteriormente en localStorage.-->
+        <textarea
+            id="resenia"
+            placeholder="Escribe tu opinión..">
+        </textarea>
+
+        <!-- Botón para publicar la reseña -->
+        <button id="btn-resenia">Publicar</button>
+
     </div>
 
 
-  </body>
+</body>
+
 </html>
