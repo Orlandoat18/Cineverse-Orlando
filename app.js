@@ -142,3 +142,39 @@ console.log(`Número de reserva: ${siguienteReserva}`);
 
 console.log(`Subtotal: ${formatoEuro.format(subtotal)}`);
 
+//BLOQUE 3: DESCUENTO FLASH
+
+// Elementos del HTML
+const botonDescuento = document.getElementById('btn-ActivarDescuento');
+const contador = document.getElementById('contador');
+
+// Estado del temporizador
+let temporizador = null;
+let segundos = 20;
+
+// Activar descuento
+botonDescuento.addEventListener('click', () => {
+
+    // Evitar varios temporizadores al mismo tiempo
+    if (temporizador !== null) {
+        return;
+    }
+
+    segundos = 20;
+    contador.textContent = segundos;
+
+    temporizador = setInterval(() => {
+
+        segundos--;
+        contador.textContent = segundos;
+
+        if (segundos <= 0) {
+
+            clearInterval(temporizador);
+            temporizador = null;
+
+            alert('La promoción ha caducado.');
+        }
+
+    }, 1000);
+});
